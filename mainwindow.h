@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QString>
 
 namespace Ui {
 class MainWindow;
@@ -19,8 +20,25 @@ private slots:
     void on_actionUndo_triggered();
     void on_actionCopy_triggered();
 
+    void on_actionSave_As_triggered();
+
+    void on_actionCut_triggered();
+
+    void on_actionPaste_triggered();
+
+    void on_actionRedo_triggered();
+
+    void on_actionSave_triggered();
+
+    void on_actionOpen_triggered();
+
+    void on_actionNew_triggered();
+
 private:
+    static const QString NO_FILE_WARN;
+    static const QString NO_FILE_TITLE;
     Ui::MainWindow *ui;
+    QString filePath;
 };
 
 #endif // MAINWINDOW_H
