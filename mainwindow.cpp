@@ -5,11 +5,13 @@
 #include <QFileDialog>
 #include <QDir>
 #include <QTextStream>
+#include <QDebug>
+
 
 
 const QString MainWindow::NO_FILE_WARN = "No such file";
 const QString MainWindow::NO_FILE_TITLE = "Cannot open file";
-const QString MainWindow::DEFAULT_FILE_NAME = "file.txt";
+const QString MainWindow::DEFAULT_FILE_NAME = "";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -52,15 +54,31 @@ void MainWindow::on_actionPaste_triggered()
 
 void MainWindow::on_actionSave_triggered()
 {
-    QFile file(filePath);
-    file.open(QFile::WriteOnly | QFile::Text);
-    QTextStream textSteam(&file);
+    QFile *file = new QFile(filePath);
+
+    if(!file->open(QFile::WriteOnly | QFile::Text)){
+        delete file;
+        filePath = QFileDialog::getSaveFileName(this, "Save", QDir::currentPath());
+        file = new QFile(filePath);
+        file->open(QFile::WriteOnly | QFile::Text);
+    }
+
+    QTextStream textSteam(file);
     textSteam << ui->textEdit->toPlainText();
+    file->flush();
+    file->close();
+    delete file;
 }
 
 void MainWindow::on_actionSave_As_triggered()
 {
-
+    filePath = QFileDialog::getSaveFileName(this, "Save as", QDir::homePath());
+    QFile file(filePath);
+    file.open(QFile::WriteOnly | QFile::Text);
+    QTextStream textSteam(&file);
+    textSteam << ui->textEdit->toPlainText();
+    file.flush();
+    file.close();
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -74,9 +92,18 @@ void MainWindow::on_actionOpen_triggered()
         return;
     }
 
-    this->setWindowTitle(file.fileName());
     QTextStream in(&file);
     ui->textEdit->setPlainText(in.readAll());
+//    QString fileName("");
+//    QString filePath = file.fileName();
+//    for(auto it = file.fileName().end(); it != file.fileName().begin(); it++){
+//        if(*it == "/"){
+//            break;
+//        }
+//        fileName += *it;
+//    }
+
+//    this->setWindowTitle(fileName);
 }
 
 void MainWindow::on_actionNew_triggered()
