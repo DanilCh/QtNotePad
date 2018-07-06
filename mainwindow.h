@@ -37,6 +37,8 @@ private slots:
 private:
     static const QString NO_FILE_WARN;
     static const QString NO_FILE_TITLE;
+    static const QString DEFAULT_FILE_NAME;
+
     Ui::MainWindow *ui;
     QString filePath;
 };

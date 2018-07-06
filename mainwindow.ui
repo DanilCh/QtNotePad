@@ -60,21 +60,23 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionSave"/>
+   <addaction name="actionOpen"/>
    <addaction name="actionNew"/>
    <addaction name="separator"/>
    <addaction name="actionCut"/>
-   <addaction name="separator"/>
    <addaction name="actionCopy"/>
    <addaction name="actionPaste"/>
    <addaction name="separator"/>
    <addaction name="actionRedo"/>
    <addaction name="actionUndo"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/add-documents.png</normaloff>:/rsc/add-documents.png</iconset>
+     <normaloff>:/rsc/icons/icons/add-documents.png</normaloff>:/rsc/icons/icons/add-documents.png</iconset>
    </property>
    <property name="text">
     <string>New</string>
@@ -83,7 +85,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/file-1.png</normaloff>:/rsc/file-1.png</iconset>
+     <normaloff>:/rsc/icons/icons/file-1.png</normaloff>:/rsc/icons/icons/file-1.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -92,13 +94,17 @@
   <action name="actionSave">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/save.png</normaloff>:/rsc/save.png</iconset>
+     <normaloff>:/rsc/icons/icons/save.png</normaloff>:/rsc/icons/icons/save.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
    </property>
   </action>
   <action name="actionSave_As">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/rsc/icons/icons/save.png</normaloff>:/rsc/icons/icons/save.png</iconset>
+   </property>
    <property name="text">
     <string>Save As</string>
    </property>
@@ -106,7 +112,7 @@
   <action name="actionCut">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/cut.png</normaloff>:/rsc/cut.png</iconset>
+     <normaloff>:/rsc/icons/icons/cut.png</normaloff>:/rsc/icons/icons/cut.png</iconset>
    </property>
    <property name="text">
     <string>Cut</string>
@@ -115,7 +121,7 @@
   <action name="actionCopy">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/copy.png</normaloff>:/rsc/copy.png</iconset>
+     <normaloff>:/rsc/icons/icons/copy.png</normaloff>:/rsc/icons/icons/copy.png</iconset>
    </property>
    <property name="text">
     <string>Copy</string>
@@ -124,7 +130,7 @@
   <action name="actionPaste">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/paste-clipboard.png</normaloff>:/rsc/paste-clipboard.png</iconset>
+     <normaloff>:/rsc/icons/icons/paste-clipboard.png</normaloff>:/rsc/icons/icons/paste-clipboard.png</iconset>
    </property>
    <property name="text">
     <string>Paste</string>
@@ -133,7 +139,7 @@
   <action name="actionRedo">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/redo.png</normaloff>:/rsc/redo.png</iconset>
+     <normaloff>:/rsc/icons/icons/redo.png</normaloff>:/rsc/icons/icons/redo.png</iconset>
    </property>
    <property name="text">
     <string>Redo</string>
@@ -142,7 +148,7 @@
   <action name="actionUndo">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/undo.png</normaloff>:/rsc/undo.png</iconset>
+     <normaloff>:/rsc/icons/icons/undo.png</normaloff>:/rsc/icons/icons/undo.png</iconset>
    </property>
    <property name="text">
     <string>Undo</string>

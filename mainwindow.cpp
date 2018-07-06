@@ -9,11 +9,12 @@
 
 const QString MainWindow::NO_FILE_WARN = "No such file";
 const QString MainWindow::NO_FILE_TITLE = "Cannot open file";
+const QString MainWindow::DEFAULT_FILE_NAME = "file.txt";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    filePath("")
+    filePath(MainWindow::DEFAULT_FILE_NAME)
 {
     ui->setupUi(this);
     this->setCentralWidget(ui->textEdit);
@@ -51,7 +52,10 @@ void MainWindow::on_actionPaste_triggered()
 
 void MainWindow::on_actionSave_triggered()
 {
-
+    QFile file(filePath);
+    file.open(QFile::WriteOnly | QFile::Text);
+    QTextStream textSteam(&file);
+    textSteam << ui->textEdit->toPlainText();
 }
 
 void MainWindow::on_actionSave_As_triggered()
@@ -65,18 +69,18 @@ void MainWindow::on_actionOpen_triggered()
     QFile file(filePath);
 
     if(!file.open(QFile::ReadOnly | QFile::Text)){
-        filePath = "";
+        filePath = "file.txt";
         QMessageBox::warning(this, MainWindow::NO_FILE_TITLE, MainWindow::NO_FILE_WARN);
         return;
     }
 
-    QTextStream in(&file);
     this->setWindowTitle(file.fileName());
+    QTextStream in(&file);
     ui->textEdit->setPlainText(in.readAll());
 }
 
 void MainWindow::on_actionNew_triggered()
 {
-    filePath = "";
+    filePath = MainWindow::DEFAULT_FILE_NAME;
     ui->textEdit->setText("");
 }
