@@ -32,3 +32,11 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui
+
+RESOURCES += \
+    resources.qrc
+
+DISTFILES += \
+    icons/add-documents.png \
+    icons/close-circular-button-of-a-cross.png \
+    icons/file-1.png
