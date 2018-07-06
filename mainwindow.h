@@ -34,6 +34,10 @@ private slots:
 
     void on_actionNew_triggered();
 
+    void on_actionFont_triggered();
+
+    void on_actionColor_triggered();
+
 private:
     static const QString NO_FILE_WARN;
     static const QString NO_FILE_TITLE;

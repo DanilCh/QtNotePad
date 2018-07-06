@@ -9,5 +9,7 @@
         <file>icons/paste-clipboard.png</file>
         <file>icons/redo.png</file>
         <file>icons/save.png</file>
+        <file>icons/font.png</file>
+        <file>icons/paint-board-and-brush.png</file>
     </qresource>
 </RCC>

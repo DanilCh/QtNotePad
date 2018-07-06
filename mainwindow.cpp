@@ -1,12 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <QMessageBox>
 #include <QFile>
 #include <QFileDialog>
 #include <QDir>
 #include <QTextStream>
 #include <QDebug>
-
+#include <QFont>
+#include <QFontDialog>
+#include <QColor>
+#include <QColorDialog>
 
 
 const QString MainWindow::NO_FILE_WARN = "No such file";
@@ -54,20 +58,20 @@ void MainWindow::on_actionPaste_triggered()
 
 void MainWindow::on_actionSave_triggered()
 {
-    QFile *file = new QFile(filePath);
+    QFile *filePtr = new QFile(filePath);
 
-    if(!file->open(QFile::WriteOnly | QFile::Text)){
-        delete file;
+    if(!filePtr->open(QFile::WriteOnly | QFile::Text)){
+        delete filePtr;
         filePath = QFileDialog::getSaveFileName(this, "Save", QDir::currentPath());
-        file = new QFile(filePath);
-        file->open(QFile::WriteOnly | QFile::Text);
+        filePtr = new QFile(filePath);
+        filePtr->open(QFile::WriteOnly | QFile::Text);
     }
 
-    QTextStream textSteam(file);
+    QTextStream textSteam(filePtr);
     textSteam << ui->textEdit->toPlainText();
-    file->flush();
-    file->close();
-    delete file;
+    filePtr->flush();
+    filePtr->close();
+    delete filePtr;
 }
 
 void MainWindow::on_actionSave_As_triggered()
@@ -94,20 +98,27 @@ void MainWindow::on_actionOpen_triggered()
 
     QTextStream in(&file);
     ui->textEdit->setPlainText(in.readAll());
-//    QString fileName("");
-//    QString filePath = file.fileName();
-//    for(auto it = file.fileName().end(); it != file.fileName().begin(); it++){
-//        if(*it == "/"){
-//            break;
-//        }
-//        fileName += *it;
-//    }
-
-//    this->setWindowTitle(fileName);
 }
 
 void MainWindow::on_actionNew_triggered()
 {
     filePath = MainWindow::DEFAULT_FILE_NAME;
     ui->textEdit->setText("");
+}
+
+void MainWindow::on_actionFont_triggered()
+{
+    bool ok;
+    QFont font = QFontDialog::getFont(&ok, this);
+    if(ok){
+        ui->textEdit->setFont(font);
+    }
+}
+
+void MainWindow::on_actionColor_triggered()
+{
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+    if(color.isValid()){
+        ui->textEdit->setTextColor(color);
+    }
 }
